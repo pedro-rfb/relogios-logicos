@@ -1,55 +1,292 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Relógios Lógicos</title>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" />
+        <meta charset="utf-8"/>
+        <title>Tempo Lógico - Relogio Lógico</title>
+        <meta name="author" content="Gabriele Paloma Vieira Rodrigues & Thays Resende Achucarro" />
+        <meta name="description" content="Ensinando eleição de líder de forma simples" />
+        <meta name="keywords"  content="sistemas distribuídos, algoritmos, anel, bully" />
+        <meta name="Resource-type" content="Document" />
+
+        <link rel="stylesheet" type="text/css" href="css/fullpageStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+        <link rel="stylesheet" type="text/css" href="plugins.css"/>
+        <link rel="shortcut icon" type="image/png" href="../img/paper-airplane-icon.png"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+
+    </head>
+
+    <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top" ><i class="fa fa-angle-up icon"></i></button>
+        <div id="wraper">
+            <section id="page-title">
+                <div class="container">
+                    <div class="page-title">
+                        <a href=" " class="btn btn-outline btn-rounded btn-light">Home</a>
+                        <a href="relogio_logico.html" class="active btn btn-rounded btn-light">Relógios Logicos</a>
+                        <a href=" " class="btn btn-outline btn-rounded btn-light">Relógios Vetoriais</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <h1>Relogios Lógicos de Lamport</h1>
+
+                    <p>
+                        Podemos usar os nossos relógios, como os relógios de pulso, de parede ou de nossos <i>smartphones</i> para traçarmos a ordem dos acontecimentos do dia a dia. Entretanto, na computação distribuída é muito difícil e custoso utilizarmos esses relógios para ordenarmos o que acontece nesses sistemas. Em um sistema distribuído, as “coisas” ocorrem com uma frequência muito maior, com duração mais curta. O termo “coisas”, são os eventos que acontecem na computação distribuída e traçar a ordem na qual esses eventos ocorrem é muito importante.
+                    </p>
+                    <p>
+                      Imagine um grupo com três pessoas: Ana, Bruno e Carla.
+                      Eles estão conversando em um aplicativo de mensagens — ou seja, cada mensagem enviada passa por servidores diferentes, dependendo da localização do usuário.
+                      </p>
+                      <p>
+                      Ana (em São Paulo) envia:<br>
+                      <strong>Ana: Oi, pessoal!</strong><br>
+
+                      Bruno (em Salvador), quase ao mesmo tempo, responde:<br>
+                      <strong>Bruno: Oi, Ana! Tudo bem?</strong>
+                      <br><br>
+
+                      A mensagem de Bruno passa rápido pelo servidor.
+
+                      A de Ana pega uma rota mais lenta e chega depois.<br>
+                      No celular de Carla, que está fora do Brasil, as mensagens chegam assim:<br><br>
+                      <strong>Bruno: Oi, Ana! Tudo bem?</strong><br>
+                      <strong>Ana: Oi, pessoal!</strong><br><br>
+                      Nesse exemplo, temos uma pequena conversa entre 3 pessoas e as mensagens chegam fora da ordem de envio para Carla. A nível global, com milhares de usuários simultâneos, a falta de sincronização seria ainda mais crítica.
+                    </p>
+                    <p>
+                      Uma definição informal do que acontece na computação distribuída é a respeito dos eventos gerados por ela. Há, basicamente, três tipos de eventos:
+                      <ul>
+                        <li>Eventos Internos: que podem alterar o estado da computação e afetam apenas o processo onde o evento ocorre;</li>
+                        <li>Eventos de envio de mensagens: que são operações de comunicação entre processos, e ocorrem quando um processo origem envia uma mensagem para outro processo, o destino;</li>
+                        <li>Eventos de recebimento de mensagens: que são operações de comunicação entre processos, e ocorrem quando um processo destino recebe uma mensagem de outro processo, o de origem.</li>
+                      </ul>                   
+                    </p>
+                    <p>
+                      <strong>Relação de precedência causal de Lamport.</strong><br>
+                    </p>
+                    <p>
+                      A relação “aconteceu antes”, definida por Leslie Lamport em 1978, determina a ordenação parcial dos eventos de um mesmo sistema sem a dependência de um relógio físico, baseando-se apenas na ordem em que ocorreram. Essa relação é definida através da notação <strong><i>a</i> → <i>b</i></strong> (leia-se <i>a</i> aconteceu antes de <i>b</i>).
+                    </p>
+                    <p>
+                      Se <strong><i>a</i></strong>, <strong><i>b</i></strong> e <strong><i>c</i></strong> são eventos de um mesmo processo <strong><i>Pi</i></strong> onde <strong><i>a</i></strong>  aconteceu antes de <strong><i>b</i></strong> <strong>(<i>a</i> → <i>b</i>)</strong> e <strong><i>b</i></strong> aconteceu antes de <strong><i>c</i></strong> <strong>(<i>b</i> → <i>c</i>)</strong>, podemos assumir, também, que <strong><i>a</i></strong> aconteceu antes de <strong><i>c</i></strong> <strong>(<i>a</i> → <i>c</i>)</strong>. No entanto, se outros dois eventos, <strong><i>d</i></strong> e <strong><i>e</i></strong>, não possuem relação causal entre si, ou seja, não realizam a troca de mensagens, dizemos que esses eventos são concorrentes, pois não é possível afirmar se <strong><i>d</i> → <i>e</i></strong> ou <strong><i>e</i> → <i>d</i></strong>. Para esses casos, utilizamos a notação <strong><i>d</i> || <i>e</i></strong>. <br>A imagem abaixo tem uma representação do que acabamos de explicar.
+                    </p>
+                    <img src="../img/lamportclock.png" alt="lamport clock" style="margin-left: px;">
+                    <br><br><br>
+                    <p>
+                        Na computação distribuída, os relógios lógicos são úteis para determinar a ordem em que esses eventos ocorrem, evitando o uso de relógios físicos. Aqui, cada processo da computação possui seu relógio lógico, que nada mais é do que um número inteiro que representa seu valor.
+                    </p>
+                    <p>
+                        Portanto, entender se um evento <i>a</i> acontece antes de um evento <i>b</i>, ou seja, a causalidade, é essencial. A ideia de tempo é importante para identificar a relação entre os eventos, e os relógios lógicos conseguem fazer isso de forma precisa, sem a necessidade de um relógio físico global.
+                    </p>
+                    <p>
+                      <strong>Definição formal de relógios lógicos</strong><br>
+                    </p>
+                    <p>
+                      De acordo com Lamport, um relógio lógico se baseia na ideia de atribuir um número para cada evento, de forma que esse número represente o tempo em que esse evento ocorre, sem a dependência de um relógio físico.
+                    </p>
+                    <p>
+                      Para que um sistema de relógios lógicos seja considerado correto, ele deve satisfazer a Condição do Relógio (Clock Condition), que exige as seguintes condições:
+                      <ul>
+                        <li>Se um evento <strong><i>a</i></strong> acontece antes de outro evento <strong><i>b</i></strong>, então o tempo atribuído à <strong><i>a</i></strong> deve ser menor que o tempo atribuído à <strong><i>b</i></strong>. Se <strong><i>a</i> → <i>b</i></strong> então <strong><i>Ci(a)</i> < <i>Ci(b)</i></strong>;</li>
+                        <li>Se <strong><i>a</i></strong> é o envio de uma mensagem por um processo <strong><i>Pi</i></strong> e <strong><i>b</i></strong> é o recebimento dessa mensagem por outro processo <strong><i>Pj</i></strong>, então <strong><i>Ci(a)</i> < <i>Cj(b)</i></strong></li>
+                      </ul>
+                    </p>
+                    <p>
+                      Para garantir essas condições, cada processo <i>Pi</i> mantém um contador de relógio lógico local <i>Ci</i>. Esse contador é atualizado de acordo com as seguintes condições:
+                      <ul>
+                        <li><strong>Evento Interno</strong></li>
+                        Antes de executar um evento, o processo <i>Pi</i> incrementa seu relógio local <i>Ci = Ci + 1</i>;
+                        <br><br><li><strong>Envio de mensagem</strong></li>
+                        Antes de enviar uma mensagem <i>m</i>, o processo Pi incrementa seu relógio local <i>Ci = Ci + 1</i> e depois envia a mensagem m com Ci anexado a ela;
+                        <br><br><li><strong>Recebimento de mensagem</strong></li>
+                        Ao receber uma mensagem <i>m</i> contendo o tempo T = <i>Ci</i>, <i>Pj</i> compara seu relógio lógico local Cj com o valor de relógio recebido na mensagem e incrementa o maior entre eles. Nesse caso, o novo valor de <i>Cj</i> será dado por <i>Cj = max(Cj, T) + 1</i>.
+                      </ul>
+                    </p>
+                    <p>
+                      Dessa forma, sempre que dois processos trocam mensagens, o relógio do emissor é compartilhado com o receptor, que atualiza o valor do seu relógio local de acordo com a regra acima.</p>
+                    <p>
+                    <br>No simulador interativo abaixo, você pode ver na prática como os relógios lógicos de Lamport funcionam. Use os controles à direita para:
+                    <ul>
+                      <li><b>Criar um Evento Interno:</b> Selecione um processo e clique no botão para simular uma operação interna. Observe o tempo lógico <i>t</i> do processo ser incrementado.</li>
+                      <li><b>Enviar Mensagem:</b> Escolha um processo de origem e um de destino. Veja como a mensagem carrega o tempo lógico do remetente, e como o destinatário ajusta seu próprio relógio ao recebê-la.</li>
+                    </ul>
+                    Clique em "Resetar" a qualquer momento para reiniciar a simulação.
+                    </p>
+                </div>
+
+
+            </section>
+        </div>
+        <script type="text/javascript" src="./js/rl.js"></script>
+
+        <!-- Go to top button -->
+        <a id="goToTop"><i class="fa fa-angle-up top-icon"></i><i class="fa fa-angle-up"></i></a>
+
+
+        <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
-    nav {
-      position: fixed;
-      top: 0; width: 100%;
-      background: #f2f2f2;
-      padding: 10px;
-    }
     body {
-      margin-top: 60px;
       font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
     }
-    section {
-      padding: 40px 20px;
+    h2 {
+      color: #0056b3;
+    }
+    svg {
+      border: 1px solid #ccc;
+      margin-top: 20px;
+      background-color: #fff;
+    }
+    .process {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .event {
+      fill: steelblue;
+      stroke: black;
+      stroke-width: 1px;
+    }
+    .message {
+      stroke: crimson;
+      stroke-width: 2px;
+    }
+    .clock-label {
+      fill: black;
+      font-size: 12px;
+      font-weight: bold;
+      text-anchor: middle;
+    }
+    button {
+      margin: 5px 10px;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #reset {
+      background-color: #dc3545;
+    }
+    #reset:hover {
+      background-color: #c82333;
+    }
+    select {
+      padding: 8px;
+      font-size: 14px;
+      margin: 0 5px;
+    }
+    #controls {
+      display: inline-block;
+      text-align: left;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #fff;
+      margin-bottom: 20px;
+    }
+    .control-group {
+      margin-bottom: 10px;
+    }
+    .control-group span {
+      font-weight: bold;
     }
   </style>
 </head>
-<body>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#secoes">Seções</a>
-    <a href="#sobre">Sobre</a>
-  </nav>
 
-  <section id="home">
-    <h2>Home</h2>
-    <p>relogios logicos.</p>
-  </section>
+  <style>
+  /* Novo container para posicionar lado a lado o gráfico e os controles */
+  #main-logic-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px; /* Espaço entre SVG e os controles */
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 
-  <section id="secoes">
-    <h2>Seções</h2>
-    <p>Conteúdo das seções...</p>
-  </section>
+  /* Garantir que o SVG não estoure */
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
 
-  <section id="sobre">
-    <h2>Sobre</h2>
-    <p>Informações sobre o site.</p>
-  </section>
+  #controls-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+</style>
+<br><div id="explanation"></div>
+<div id="main-logic-section">
+  <!-- SVG (gráfico) à esquerda -->
+  <svg width="800" height="400"></svg>
 
-  <!-- js -->
-  <script>
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href'))
-          .scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  </script>
-</body>
+  <!-- Controles à direita -->
+  <div id="controls-container">
+    <div id="controls">
+      <div class="control-group">
+        <span>Processo:</span>
+        <select id="process-select-create">
+          <option value="P0">P0</option>
+          <option value="P1">P1</option>
+          <option value="P2">P2</option>
+        </select>
+        <button id="create-event">Criar Evento Interno</button>
+      </div>
+      <hr>
+      <div class="control-group">
+        <span>De:</span>
+        <select id="source-process">
+          <option value="P0">P0</option>
+          <option value="P1">P1</option>
+          <option value="P2">P2</option>
+        </select>
+        <span>Para:</span>
+        <select id="dest-process">
+          <option value="P1">P1</option>
+          <option value="P0">P0</option>
+          <option value="P2">P2</option>
+        </select>
+        <button id="send-message">Enviar Mensagem</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 5px;">
+      <button id="reset">Resetar</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/relogio_logico.js"></script>
+
+  <div id="explanation"></div>
+  <script src="js/relogio_logico.js"></script>
+    </body>
+    <!-- Footer -->
+            <footer id="footer" class="footer-dark">
+
+                <div class="copyright-content">
+                <div class="container">
+                    <div class="copyright-text text-center">&copy; 2021 - Explorando Sistemas. Todos os direitos reservados. </div>
+                </div>
+                </div>
+            </footer>
+            <!-- end: Footer -->
 </html>
