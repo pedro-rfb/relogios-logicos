@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+    <!-- Generator: Gravit.io -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 50 43.474" width="50" height="43.474">
+        <defs>
+            <clipPath id="_clipPath_70DatL8iKHWBRT4wfTljAVaGdyUmtyOs">
+                <rect width="50" height="43.474"/>
+            </clipPath>
+        </defs>
+        <g clip-path="url(#_clipPath_70DatL8iKHWBRT4wfTljAVaGdyUmtyOs)">
+            <path d=" M 37.351 43.474 L 24.851 43.388 L 12.351 43.301 L 6.175 32.433 L 0 21.564 L 6.325 10.782 L 12.649 0 L 25.149 0.086 L 37.649 0.173 L 43.825 11.041 L 50 21.91 L 43.675 32.692 L 37.351 43.474 Z " fill="rgb(93,93,93)"/>
+            <clipPath id="_clipPath_NvX77scdAMNoYAfBjkzh0uWBeyIBoUri">
+                <path d=" M 37.351 43.474 L 24.851 43.388 L 12.351 43.301 L 6.175 32.433 L 0 21.564 L 6.325 10.782 L 12.649 0 L 25.149 0.086 L 37.649 0.173 L 43.825 11.041 L 50 21.91 L 43.675 32.692 L 37.351 43.474 Z " fill="rgb(93,93,93)"/>
+            </clipPath>
+            <g clip-path="url(#_clipPath_NvX77scdAMNoYAfBjkzh0uWBeyIBoUri)">
+                <path d=" M 21.537 21.702 L 31.818 31.983 L 29.392 34.409 L 19.111 24.128 L 19.093 24.146 L 16.667 21.72 L 29.318 9.068 L 31.744 11.494 L 21.537 21.702 Z " fill-rule="evenodd" fill="rgb(235,235,235)"/>
+            </g>
+        </g>
+    </svg>
