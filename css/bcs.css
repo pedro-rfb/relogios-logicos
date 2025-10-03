@@ -1,0 +1,21 @@
+* {
+    margin:0;
+    padding:0
+}
+
+#svg_estatico, #svg_dinamico {
+    display: flex;
+    justify-content: center;
+}
+
+#acoes {
+    display: flex;
+    justify-content: center;
+    height: 84px;
+    color: black;
+}
+
+#botoes {
+    display: flex;
+    justify-content: center;
+}

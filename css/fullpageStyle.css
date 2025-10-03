@@ -1,0 +1,360 @@
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+form,fieldset,input,textarea,p,blockquote,th,td {
+    padding: 0;
+    margin: 0;
+}
+
+#nav-overlay{
+    margin-left: 0px;
+    font-size:30px;
+    color: #1c1f33;
+    cursor:pointer;
+}
+.slider {
+    display: inline;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #bfbdc1;/*d3d3d3*/
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #1c1f33;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #1c1f33;
+    cursor: pointer;
+}
+
+button.hover {
+    font-weight: bold;
+    font-size: inherit;
+    font-family: inherit;
+    border: 1px outset hsl(0, 24%, 95%);
+    border-radius: 4px;
+    background: #f7f9f9;
+    color: #000;
+    margin: 4px;
+    padding: 2px;
+    -webkit-appearance:none;
+    cursor: pointer;
+}
+button.hover:hover {
+    border-color: hsl(241, 20%, 15%);
+    background: #1c1f33;
+    color: #fff;
+    box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.5);
+}
+
+table,th,td{
+    margin: auto;
+    padding: 3px;
+    border: 1px solid #444;
+    color:#000;
+    border-radius: 6px;
+    border-collapse: collapse;
+   
+}
+.left{
+	display: inline-block;
+	width: 70%;
+	text-align: center;
+	vertical-align: middle;
+}
+.right{
+	display: inline-block;
+	width: 25%;
+	text-align: left;
+	vertical-align: middle;
+}
+.section{
+    display: inline-block;
+}
+#divider{
+    width: 100%;
+    height: 400px;
+}
+#table2,
+#table{
+    margin-top: 10%;
+}
+/* Fixed sidenav, full height */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+    background-color: #222;
+    color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+/* ----------------------------------------------------------------
+	Columns & Grids
+-----------------------------------------------------------------*/
+
+
+.postcontent { width: 860px; }
+.postcontent.bothsidebar { width: 580px; }
+.sidebar { width: 240px; }
+.col_full { width: 100%; }
+.col_half { width: 48%; }
+.col_one_third { width: 30.63%; }
+.col_two_third { width: 65.33%; }
+.col_one_fourth { width: 22%; }
+.col_three_fourth { width: 74%; }
+.col_one_fifth { width: 16.8%; }
+.col_two_fifth { width: 37.6%; }
+.col_three_fifth { width: 58.4%; }
+.col_four_fifth { width: 79.2%; }
+.col_one_sixth { width: 13.33%; }
+.col_five_sixth { width: 82.67%; }
+body.stretched .container-fullwidth {
+	position: relative;
+	padding: 0 60px;
+	width: 100%;
+}
+
+.postcontent,
+.sidebar,
+.col_full,
+.col_half,
+.col_one_third,
+.col_two_third,
+.col_three_fourth,
+.col_one_fourth,
+.col_one_fifth,
+.col_two_fifth,
+.col_three_fifth,
+.col_four_fifth,
+.col_one_sixth,
+.col_five_sixth {
+	display: block;
+	position: relative;
+	margin-right: 4%;
+	margin-bottom: 50px;
+	float: left;
+}
+
+.postcontent,
+.sidebar { margin-right: 40px; }
+
+.col_full {
+	clear: both;
+	float: none;
+	margin-right: 0;
+}
+
+.postcontent.col_last,
+.sidebar.col_last { float: right; }
+
+.col_last {
+	margin-right: 0 !important;
+	clear: right;
+}
+
+/* ----------------------------------------------------------------
+	Columns & Grids
+-----------------------------------------------------------------*/
+#myBtn {
+    display: none;
+    height: 40px;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #2892D7;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 10px;
+  }
+  
+  #myBtn:hover {
+    background-color: #555;
+  }
+ 
+.nav-unit{
+    padding: 5%; 
+    margin:8% auto;
+    text-align: left;
+    background-color: white;
+     box-shadow: 0px 0px 20px rgba(135,152,160,0.3);
+    -webkit-transition: box-shadow 0.5s ease-out;
+}
+.nav-unit:hover{
+    box-shadow: 0px 0px 40px rgb(255,255,255);
+}
+.nav-unit img{
+    vertical-align: middle;
+}
+.nav-unit-sect{
+    vertical-align: middle;
+    display: inline-block;
+    color: #444;
+}
+
+@media screen and (min-width : 0px) {
+    .nav-unit{
+        width: 6em; 
+        text-align: center;
+    }
+    .nav-unit-sect{
+        padding-left:0;
+        font-size:0.8em;
+    }
+    .nav-unit img{
+        width: 4em; 
+    }
+    h1{
+        font-size: 20px;
+    }
+
+    h4{
+        font-size: 14px;
+    }
+
+    p{
+        font-size: 16px;
+        font-weight: 300;
+    }
+}
+
+@media screen and (min-width : 680px) {
+    .nav-unit{
+        width: 15em; 
+        text-align: left;
+    }
+    .nav-unit-sect{
+        padding-left: 10%;
+    }
+    .nav-unit img{
+        width: 5em; 
+    }
+    .right, .left{
+        width: 43%;
+        margin-left: 2%;
+        margin-right: 2%;
+        max-width: 360px;
+    
+    }
+    .right{
+        padding-top:5em;
+    }
+    h1{
+        font-size: 4em;
+    }
+
+    h4{
+        font-size: 20px;
+    }
+
+    p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width : 1024px) {
+    .nav-unit{
+        width: 20em;
+    }
+    .nav-unit img{
+        width: 6em;
+    }
+    .nav-unit-sect{
+        font-size: 1em;
+        padding-left: 10%;
+    }
+    h1{
+        font-size: 4em;
+    }
+
+    h4{
+        font-size: 24px;
+    }
+
+    p{
+        font-size: 16px;
+        font-weight: 400;
+    }
+}/**/
+
+
+#thirdsvg,
+#background,
+#forthsvg,
+#firstsvg,
+#fourthsvg{
+    text-align: center;
+}
