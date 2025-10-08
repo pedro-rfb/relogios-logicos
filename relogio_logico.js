@@ -153,7 +153,7 @@ function sendMessage() {
     lastActivityX[destProcess] = toX;
     
     // aplica a regra de Lamport ajustada
-    const newDestClock = Math.max(oldDestClock, messageTimestamp);
+    const newDestClock = Math.max(oldDestClock, messageTimestamp) +1;
     processClocks[destProcess] = newDestClock;
 
     // cria a mensagem de explicação com base na comparação
@@ -162,9 +162,9 @@ function sendMessage() {
     const receiver = `c(${destProcess})`;
 
     if (oldDestClock < messageTimestamp) {
-        explanation = `Tempo de ${receiver} < ${sender}, portanto ${receiver} = ${sender} => ${newDestClock}`;
+        explanation = `Tempo de ${receiver} < ${sender}, portanto ${receiver} = ${sender} + 1`;
     } else {
-        explanation = `Tempo de ${receiver} >= ${sender}, portanto o tempo de ${receiver} não é atualizado.`;
+        explanation = `Tempo de ${receiver} >= ${sender}, portanto ${receiver} = ${receiver} + 1 `;
     }
     explanationDiv.text(explanation);
 
