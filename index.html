@@ -27,8 +27,6 @@
                 <div class="container">
                     <div class="page-title">
                         <a href=" " class="btn btn-outline btn-rounded btn-light">Home</a>
-                        <a href="index.html" class="active btn btn-rounded btn-light">Relógios Logicos</a>
-                        <a href=" " class="btn btn-outline btn-rounded btn-light">Relógios Vetoriais</a>
                     </div>
                 </div>
             </section>
@@ -104,7 +102,7 @@
                         <li><strong>Evento Interno</strong></li>
                         Antes de executar um evento, o processo <i>Pi</i> incrementa seu relógio local <i>Ci = Ci + 1</i>;
                         <br><br><li><strong>Envio de mensagem</strong></li>
-                        Antes de enviar uma mensagem <i>m</i>, o processo Pi incrementa seu relógio local <i>Ci = Ci + 1</i> e depois envia a mensagem m com Ci anexado a ela;
+                        Antes de enviar uma mensagem <i>m</i>, o processo Pi incrementa seu relógio local <i>Ci = Ci + 1</i> e depois envia a mensagem <i>m</i> com <i>Ci</i> anexado a ela;
                         <br><br><li><strong>Recebimento de mensagem</strong></li>
                         Ao receber uma mensagem <i>m</i> contendo o tempo T = <i>Ci</i>, <i>Pj</i> compara seu relógio lógico local Cj com o valor de relógio recebido na mensagem e incrementa o maior entre eles. Nesse caso, o novo valor de <i>Cj</i> será dado por <i>Cj = max(Cj, T) + 1</i>.
                       </ul>
