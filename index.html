@@ -104,7 +104,7 @@
                         <br><br><li><strong>Envio de mensagem</strong></li>
                         Antes de enviar uma mensagem <i>m</i>, o processo P<sub>i</sub> incrementa seu relógio local <i>C<sub>i</sub> = C<sub>i</sub> + 1</i> e depois envia a mensagem <i>m</i> com <i>C<sub>i</sub></i> anexado a ela;
                         <br><br><li><strong>Recebimento de mensagem</strong></li>
-                        Ao receber uma mensagem <i>m</i> contendo o tempo T = <i>C<sub>i</sub></i>, <i>P<sub>j</sub></i> compara seu relógio lógico local C<sub>j</sub> com o valor de relógio recebido na mensagem e incrementa o maior entre eles. Nesse caso, o novo valor de <i>C<sub>j</sub></i> será dado por <i>C<sub>j</sub> = max(Cj, T) + 1</i>.
+                        Ao receber uma mensagem <i>m</i> contendo o tempo T = <i>C<sub>i</sub></i>, <i>P<sub>j</sub></i> compara seu relógio lógico local C<sub>j</sub> com o valor de relógio recebido na mensagem e incrementa o maior entre eles. Nesse caso, o novo valor de <i>C<sub>j</sub></i> será dado por <i>C<sub>j</sub> = max(C<sub>j</sub>, T) + 1</i>.
                       </ul>
                     </p>
                     <p>
