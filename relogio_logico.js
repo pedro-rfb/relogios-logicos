@@ -133,53 +133,68 @@ function sendMessage() {
         return;
     }
 
-    // incrementa o relógio local e envia esse novo tempo
+    // incrementa o relógio local do remetente (este será o "t=4" por exemplo)
     processClocks[sourceProcess]++;
     const messageTimestamp = processClocks[sourceProcess];
     const oldDestClock = processClocks[destProcess];
 
-    const sourceX = lastActivityX[sourceProcess];
+    // calcula a posição X onde queremos mostrar o rótulo de envio (sem criar círculo)
+    const tentativeSourceX = lastActivityX[sourceProcess] + EVENT_X_OFFSET;
     const destX = lastActivityX[destProcess];
-    
-    const fromX = sourceX + EVENT_X_OFFSET / 2;
+
+    // origem da linha (vai partir do marcador de tempo que estamos criando)
+    const fromX = tentativeSourceX;
+    // destino da linha: garantir que fique depois da última atividade do destino
     const toX = Math.max(fromX, destX) + EVENT_X_OFFSET / 2;
 
     if (toX > MAX_X_POSITION) {
+        // não altera nada se ultrapassar o limite
         alert("Não é possível enviar mensagem: limite visual atingido.");
+        // reverte o incremento do relógio do remetente? (opcional)
+        processClocks[sourceProcess]--; // se preferir cancelar a operação visualmente
         return;
     }
 
+    // só após passar na checagem de limite, atualizamos as últimas posições
     lastActivityX[sourceProcess] = fromX;
     lastActivityX[destProcess] = toX;
-    
-    // aplica a regra de Lamport ajustada
-    const newDestClock = Math.max(oldDestClock, messageTimestamp) +1;
+
+    // aplica a regra de Lamport ajustada para o destino
+    const newDestClock = Math.max(oldDestClock, messageTimestamp) + 1;
     processClocks[destProcess] = newDestClock;
 
-    // cria a mensagem de explicação com base na comparação
-    let explanation;
+    // cria a explicação textual (opcional)
     const sender = `c(${sourceProcess})`;
     const receiver = `c(${destProcess})`;
-
+    let explanation;
     if (oldDestClock < messageTimestamp) {
         explanation = `Tempo de ${receiver} < ${sender}, portanto ${receiver} = ${sender} + 1`;
     } else {
-        explanation = `Tempo de ${receiver} >= ${sender}, portanto ${receiver} = ${receiver} + 1 `;
+        explanation = `Tempo de ${receiver} >= ${sender}, portanto ${receiver} = ${receiver} + 1`;
     }
     explanationDiv.text(explanation);
 
-    // adiciona a mensagem e o rótulo de chegada para a visualização
+    // adiciona a linha/âncora da mensagem (seta animada)
     messages.push({
         id: `m${messages.length}`,
         fromCoords: { x: fromX, y: yScale(sourceProcess) },
         toCoords: { x: toX, y: yScale(destProcess) }
     });
-    
+
+    // adiciona apenas o rótulo de tempo no remetente (sem círculo)
     arrivalClocks.push({
-      id: `ac${arrivalIdCounter++}`,
-      process: destProcess,
-      clock: newDestClock,
-      x: toX
+        id: `sendClock${arrivalIdCounter++}`,
+        process: sourceProcess,
+        clock: messageTimestamp,
+        x: fromX
+    });
+
+    // adiciona o rótulo de chegada no destinatário (t=5, por ex.)
+    arrivalClocks.push({
+        id: `ac${arrivalIdCounter++}`,
+        process: destProcess,
+        clock: newDestClock,
+        x: toX
     });
 
     redraw();
