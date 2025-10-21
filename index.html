@@ -73,7 +73,7 @@
                       A relação “aconteceu antes”, definida por Leslie Lamport em 1978, determina a ordenação parcial dos eventos de um mesmo sistema sem a dependência de um relógio físico, baseando-se apenas na ordem em que ocorreram. Essa relação é definida através da notação <strong><i>a</i> → <i>b</i></strong> (leia-se <i>a</i> aconteceu antes de <i>b</i>).
                     </p>
                     <p>
-                      Se <strong><i>a</i></strong>, <strong><i>b</i></strong> e <strong><i>c</i></strong> são eventos de um mesmo processo <strong><i>Pi</i></strong> onde <strong><i>a</i></strong>  aconteceu antes de <strong><i>b</i></strong> <strong>(<i>a</i> → <i>b</i>)</strong> e <strong><i>b</i></strong> aconteceu antes de <strong><i>c</i></strong> <strong>(<i>b</i> → <i>c</i>)</strong>, podemos assumir, também, que <strong><i>a</i></strong> aconteceu antes de <strong><i>c</i></strong> <strong>(<i>a</i> → <i>c</i>)</strong>. No entanto, se outros dois eventos, <strong><i>d</i></strong> e <strong><i>e</i></strong>, não possuem relação causal entre si, ou seja, não realizam a troca de mensagens, dizemos que esses eventos são concorrentes, pois não é possível afirmar se <strong><i>d</i> → <i>e</i></strong> ou <strong><i>e</i> → <i>d</i></strong>. Para esses casos, utilizamos a notação <strong><i>d</i> || <i>e</i></strong>. <br>A imagem abaixo tem uma representação do que acabamos de explicar.
+                      Se <strong><i>a</i></strong>, <strong><i>b</i></strong> e <strong><i>c</i></strong> são eventos de um mesmo processo <strong><i>P<sub>i</sub></i></strong> onde <strong><i>a</i></strong>  aconteceu antes de <strong><i>b</i></strong> <strong>(<i>a</i> → <i>b</i>)</strong> e <strong><i>b</i></strong> aconteceu antes de <strong><i>c</i></strong> <strong>(<i>b</i> → <i>c</i>)</strong>, podemos assumir, também, que <strong><i>a</i></strong> aconteceu antes de <strong><i>c</i></strong> <strong>(<i>a</i> → <i>c</i>)</strong>. No entanto, se outros dois eventos, <strong><i>d</i></strong> e <strong><i>e</i></strong>, não possuem relação causal entre si, ou seja, não realizam a troca de mensagens, dizemos que esses eventos são concorrentes, pois não é possível afirmar se <strong><i>d</i> → <i>e</i></strong> ou <strong><i>e</i> → <i>d</i></strong>. Para esses casos, utilizamos a notação <strong><i>d</i> || <i>e</i></strong>. <br>A imagem abaixo tem uma representação do que acabamos de explicar.
                     </p>
                     <img src="img/lamportclock.png" alt="lamport clock" style="margin-left: px;">
                     <br><br><br>
@@ -93,18 +93,18 @@
                       Para que um sistema de relógios lógicos seja considerado correto, ele deve satisfazer a Condição do Relógio (Clock Condition), que exige as seguintes condições:
                       <ul>
                         <li>Se um evento <strong><i>a</i></strong> acontece antes de outro evento <strong><i>b</i></strong>, então o tempo atribuído à <strong><i>a</i></strong> deve ser menor que o tempo atribuído à <strong><i>b</i></strong>. Se <strong><i>a</i> → <i>b</i></strong> então <strong><i>Ci(a)</i> < <i>Ci(b)</i></strong>;</li>
-                        <li>Se <strong><i>a</i></strong> é o envio de uma mensagem por um processo <strong><i>Pi</i></strong> e <strong><i>b</i></strong> é o recebimento dessa mensagem por outro processo <strong><i>Pj</i></strong>, então <strong><i>Ci(a)</i> < <i>Cj(b)</i></strong></li>
+                        <li>Se <strong><i>a</i></strong> é o envio de uma mensagem por um processo <strong><i>P<sub>i</sub></i></strong> e <strong><i>b</i></strong> é o recebimento dessa mensagem por outro processo <strong><i>Pj</i></strong>, então <strong><i>Ci(a)</i> < <i>Cj(b)</i></strong></li>
                       </ul>
                     </p>
                     <p>
-                      Para garantir essas condições, cada processo <i>Pi</i> mantém um contador de relógio lógico local <i>Ci</i>. Esse contador é atualizado de acordo com as seguintes condições:
+                      Para garantir essas condições, cada processo <i>P<sub>i</sub></i> mantém um contador de relógio lógico local <i>C<sub>i</sub></i>. Esse contador é atualizado de acordo com as seguintes condições:
                       <ul>
                         <li><strong>Evento Interno</strong></li>
-                        Antes de executar um evento, o processo <i>Pi</i> incrementa seu relógio local <i>Ci = Ci + 1</i>;
+                        Antes de executar um evento, o processo <i>P<sub>i</sub></i> incrementa seu relógio local <i>C<sub>i</sub> = C<sub>i</sub> + 1</i>;
                         <br><br><li><strong>Envio de mensagem</strong></li>
-                        Antes de enviar uma mensagem <i>m</i>, o processo Pi incrementa seu relógio local <i>Ci = Ci + 1</i> e depois envia a mensagem <i>m</i> com <i>Ci</i> anexado a ela;
+                        Antes de enviar uma mensagem <i>m</i>, o processo P<sub>i</sub> incrementa seu relógio local <i>C<sub>i</sub> = C<sub>i</sub> + 1</i> e depois envia a mensagem <i>m</i> com <i>C<sub>i</sub></i> anexado a ela;
                         <br><br><li><strong>Recebimento de mensagem</strong></li>
-                        Ao receber uma mensagem <i>m</i> contendo o tempo T = <i>Ci</i>, <i>Pj</i> compara seu relógio lógico local Cj com o valor de relógio recebido na mensagem e incrementa o maior entre eles. Nesse caso, o novo valor de <i>Cj</i> será dado por <i>Cj = max(Cj, T) + 1</i>.
+                        Ao receber uma mensagem <i>m</i> contendo o tempo T = <i>C<sub>i</sub></i>, <i>P<sub>j</sub></i> compara seu relógio lógico local C<sub>j</sub> com o valor de relógio recebido na mensagem e incrementa o maior entre eles. Nesse caso, o novo valor de <i>C<sub>j</sub></i> será dado por <i>C<sub>j</sub> = max(Cj, T) + 1</i>.
                       </ul>
                     </p>
                     <p>
